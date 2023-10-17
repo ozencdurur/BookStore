@@ -1,0 +1,43 @@
+﻿@model List<BookType>
+
+@if(TempData["success"] != null)
+{
+	<h2 class="text-success pt-3 pb-4">
+		@TempData["success"]
+	</h2>
+}
+
+<div class="container">
+	<div class="row pt-3 pb-4">
+		<div>
+			<h1>Kitap Türleri</h1>
+		</div>
+	</div>
+	<table class="table table-bordered">
+		<thead>
+			<tr>
+				<th>Kitap Türü ID</th>
+				<th>Kitap Türü</th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+			@foreach (var bookType in Model)
+			{
+				<tr>
+					<td>@bookType.Id</td>
+					<td>@bookType.Name</td>
+					<td>
+						<a asp-controller="BookType" asp-action="Update" asp-route-id="@bookType.Id" type="button" class="btn btn-dark">Güncelle</a>
+						<a asp-controller="BookType" asp-action="Delete" asp-route-id="@bookType.Id" class="btn btn-danger">Sil</a>
+					</td>
+				</tr>
+			}
+		</tbody>
+	</table>
+	<div class="row pt-3 pb-2">
+		<div>
+			<a asp-controller="BookType" asp-action="Create" class="btn btn-dark" type="button">Yeni Kitap Türü Oluştur</a>
+		</div>
+	</div>
+</div>
